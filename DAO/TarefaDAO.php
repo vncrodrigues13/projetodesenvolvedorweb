@@ -27,24 +27,28 @@ class TarefaDAO{
         $sql = "INSERT INTO tarefa VALUES ";
         $sql .="('$task_id','$task_title','$task_descript','$task_beginDate','$task_endDate','$user_id','$task_status');";
         mysqli_query($this -> connection,$sql) or die ('error');
-        echo 'Adicionado task';
+        mysqli_close($this -> connection);
     }
 
 
     public function selectAll(){
         $sql = "SELECT * FROM tarefa";
         $result = mysqli_query($this -> connection, $sql);
+        mysqli_close($this -> connection);
         return $result;
     }
 
     public function getTaskByTaskID($idTask){
         $sql = "SELECT * FROM tarefa WHERE task_codigo_identificador = '$idTask';";
-        mysqli_query($this -> connection, $sql);
+        $result = mysqli_query($this -> connection, $sql);
+        mysqli_close($this -> connection);
+        return $result;
     }
 
     public function getTaskByUserID($userID){
         $sql = "SELECT * FROM tarefa WHERE user_identifier_code = '$userID';";
         $result = mysqli_query($this -> connection, $sql);
+        mysqli_close($this -> connection);
         return $result;
     }
 
@@ -58,12 +62,14 @@ class TarefaDAO{
         
         $sql = "UPDATE tarefa SET task_title = '$task_title', task_description = '$task_descript', task_begin_date = '$task_beginDate'";
         $sql .="task_end_date = '$task_endDate', user_identifier_code = '$user_id', task_status = '$task_status';";
+        mysqli_query($this -> connection, $sql);
+        mysqli_close($this -> connection);
     }
 
     public function deleteTask($taskID){
         $sql = "DELETE FROM tarefa WHERE task_codigo_identificador = '$taskID';";
         mysqli_query($this -> connection, $sql);
-        echo ('Removido');
+        mysqli_close($this -> connection);
     }
 
 

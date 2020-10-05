@@ -13,12 +13,15 @@ class UsuarioDAO{
 
 
     public function addUser($user){
+        
         $identifier = $user -> getIdentifierCode();
         $login = $user -> getLogin();
         $senha = $user -> getPassword();
         $sql = "INSERT INTO usuario VALUES";
         $sql .= "('$login','$senha','$identifier')";
         mysqli_query($this -> connection,$sql);
+        mysqli_close($this -> connection);
+        
     }
 
     public function selectAll(){
@@ -56,7 +59,6 @@ class UsuarioDAO{
         while ($registro = mysqli_fetch_array($result)){
             return $registro;
         }
-        echo 'Login incorreto';
         return null;
     }
 
@@ -85,11 +87,19 @@ class UsuarioDAO{
         mysqli_query($this -> connection, $sql);
     }
 
+
+    public function existElements($usuario){
+        $identifier = $usuario -> getIdentifierCode();
+        $login = $usuario -> getLogin();
+        $sql = "SELECT * FROM usuario WHERE login = '$login' OR codigo_identificador = '$identifier'";
+        $query = mysqli_query($this -> connection,$sql);
+        return mysqli_num_rows($query) != 0;
+        //caso o usuario ja exista um usuario com o mesmo login ou identificador
+    }
+
     
 
     
 
 
 }
-
-?>

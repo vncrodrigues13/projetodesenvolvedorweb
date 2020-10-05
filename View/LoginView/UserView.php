@@ -1,12 +1,10 @@
 <?php
 session_start();
+include ('verifica-login.php');
 require_once '../../UserModel/UserModel.php';
 
-$objeto = $_SESSION['objeto'];
-$login = $objeto['login'];
-$senha = $objeto['senha'];
-$identificadorUsuario = $objeto['codigo_identificador'];
-$user = new UserModel($identificadorUsuario,$login,$senha);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +22,10 @@ $user = new UserModel($identificadorUsuario,$login,$senha);
         <header>
             <h2>Ola, 
                 <?php 
-                    echo $login;
+                    $obj = $_SESSION['objeto'];
+                    $id_user = $obj['codigo_identificador'];
+                    $login = $obj['login'];
+                    echo $login."<br> ID: ".$id_user;
                 ?>
             </h2>
             
@@ -32,9 +33,10 @@ $user = new UserModel($identificadorUsuario,$login,$senha);
         </header>
 
         <ol style="list-style: none;">
-            <l1><a href="#">Alterar Dados do Usuário</a><br></l1>
+            <l1><a href="alterar-dados-usuario.php">Alterar Dados do Usuário</a><br></l1>
             <li><a href="criar-tarefa.php">Criar Tarefa</a><br></li>
-            <li><a href=#>Ver suas tarefas</a><br></li>
+            <li><a href="persistir-tarefas-view.php">Ver suas tarefas</a><br></li>
+            <li><a href="logout.php">Sair</a></li>
         </ol>
         
         

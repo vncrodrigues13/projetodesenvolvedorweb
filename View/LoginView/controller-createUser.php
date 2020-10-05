@@ -10,7 +10,7 @@ $connection = $connection -> getConnection();
 $userDAO = new UsuarioDAO($connection);
 
 if (empty($_POST['login-user']) || empty($_POST['id-user']) || empty($_POST['senha-user'])){
-    header('Location: index.php');
+    header('Location: cadastrarView.php');
     exit();
 }
 
@@ -21,10 +21,14 @@ $identificador = mysqli_escape_string($connection,$_POST['id-user']);
 
 $modeloObjeto = new UserModel($identificador,$login,$senha);
 
-$userDAO -> addUser($modeloObjeto);
-
-
-
+if (!$userDAO -> existElements($modeloObjeto)){
+    $userDAO -> addUser($modeloObjeto);
+    header('Location: index.php');
+    exit();
+}else{
+    header('Location: cadastrar-usuario-View.php');
+    exit();
+}
 
 
 ?>

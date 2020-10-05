@@ -10,7 +10,6 @@ $connection = $connection -> getConnection();
 $userDao = new UsuarioDAO($connection);
 
 if (empty($_POST['login-user']) || empty($_POST['senha-user'])){
-    echo "<script>alert('Login ou Senha em Branco');</script>";
     header('Location: index.php');
     exit();
 }
@@ -25,10 +24,11 @@ if($element != null){
     header('Location: UserView.php');
     exit();
 }else{
+    $_SESSION['nao-existe-usuario'] = true;
     header('Location: index.php');
     exit();
 }
 
-
+unset($_SESSION['objeto']);
 
 ?>
