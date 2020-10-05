@@ -1,0 +1,27 @@
+.content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1b262c;
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #bbd196;
+    font-size: 40px;
+}
+
+a {
+    font-size: 20px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+a:hover {
+    text-decoration: underline;
+    transition: 0.5s;
+}

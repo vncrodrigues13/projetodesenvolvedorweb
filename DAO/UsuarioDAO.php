@@ -20,8 +20,6 @@ class UsuarioDAO{
         $sql = "INSERT INTO usuario VALUES";
         $sql .= "('$login','$senha','$identifier')";
         mysqli_query($this -> connection,$sql);
-        mysqli_close($this -> connection);
-        
     }
 
     public function selectAll(){
@@ -30,26 +28,6 @@ class UsuarioDAO{
         return $result;
     }
     
-    public function exibirAll(){
-        echo "<table border = 1>";
-        echo "<tr>";
-        echo "<th>LOGIN</th>";
-        echo "<th>SENHA</th>";
-        echo "<th>IDENTIFICADOR</th>";
-        echo "</tr>";
-        $sql = 'SELECT * FROM usuario';
-        $result = mysqli_query($this -> connection,$sql) or die ("Erro ao tentar buscar registro de usuarios");
-        while ($registro = mysqli_fetch_array($result)){
-            $user_login = $registro['login'];
-            $user_senha = $registro['senha'];
-            $user_id = $registro['codigo_identificador'];
-            echo "<tr>";
-            echo "<td>".$user_login."</td>";
-            echo "<td>".$user_senha."</td>";
-            echo "<td>".$user_id."</td>";
-            echo "</tr>";
-        }
-    }
 
 
     public function autenticar($login, $senha){

@@ -32,6 +32,9 @@ $beginDate = mktime($splittime[0],$splittime[1],$splittime[3],$splitdate[1],$spl
 $taskmodel = new TaskModel($identificador_usuario,$title,$description,$beginDate);
 $taskDAO -> addTask($taskmodel);
 
+header('Location: UserView.php');
+exit();
+
 
 
 

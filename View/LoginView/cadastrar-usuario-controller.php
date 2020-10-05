@@ -26,6 +26,7 @@ if (!$userDAO -> existElements($modeloObjeto)){
     header('Location: index.php');
     exit();
 }else{
+    $_SESSION['already-exist'] = true;
     header('Location: cadastrar-usuario-View.php');
     exit();
 }

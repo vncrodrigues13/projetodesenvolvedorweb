@@ -1,0 +1,24 @@
+.content {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111d5e;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    font-size: 30px;
+    display: grid;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    height: 27px;
+    text-align: center;
+}
